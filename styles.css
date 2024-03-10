@@ -1,0 +1,126 @@
+:root {
+  --bg-color: #f6f8ff;
+  --text-color: #2b3442;
+  --accent-color: #0079ff;
+  --panel-bg-color: #FEFEFE;
+  --text-mute-color: #697C9A;
+  --text-label-color: #4B6A9B;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #141d2f;
+    --text-color: #ffffff;
+    --panel-bg-color: #1E2A47;
+  }
+}
+
+html {
+  color-scheme: dark light;
+}
+/* CSS-only solution using :has()
+     the JS version is commented out lower down */
+:root:has(#theme [value="☀️"]:checked) {
+  color-scheme: light;
+  --bg-color: #f6f8ff;
+  --text-color: #2b3442;
+  --panel-bg-color: #FEFEFE;
+}
+
+:root:has(#theme [value="🌑"]:checked) {
+  color-scheme: dark;
+  --bg-color: #141d2f;
+  --text-color: #ffffff;
+  --panel-bg-color: #1E2A47;
+}
+
+body {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+body {
+  font-family: "Space Mono", sans-serif;
+  font-size: 15px;
+  line-height: 25px;
+  margin: 0;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+h1 {
+  font-size: 26px;
+  line-height: 38px;
+}
+
+h2 {
+  font-size: 22px;
+  line-height: 33px;
+}
+
+h3 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+h4 {
+  font-size: 13px;
+  line-height: 20px;
+}
+
+input,
+select {
+  font: inherit;
+}
+
+.with-scrollbar {
+  height: 300px;
+  border: 5px solid hsl(0 0 50% / 0.5);
+  overflow-y: scroll;
+}
+
+/* Use the two selectors below if you want the JS version
+  [data-theme="☀️"] {
+    color-scheme: light;
+    --base: #cfcfcf;
+    --text: #212121;
+  }
+  
+  [data-theme="🌑"] {
+    color-scheme: dark;
+    --base: #212121;
+    --text: #cfcfcf;
+  } */
+
+
+  .container {
+    width: 730px;
+    margin: 0 auto;
+  }
+
+  .panel {
+    padding: 32px;
+    background-color: var(--panel-bg-color);
+    border-radius: 15px;
+    display: flex;
+    gap: 30px;
+  }
+
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
