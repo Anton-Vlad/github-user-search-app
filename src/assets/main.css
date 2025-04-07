@@ -1,0 +1,128 @@
+@import './base.css';
+
+.container {
+  max-width: 730px;
+  margin: 0 auto;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.search-bar {
+  background-color: var(--panel-bg-color);
+  padding: 10px 10px 10px 32px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  margin-top: 36px;
+  margin-bottom: 24px;
+  box-shadow: 0 16px 50px -19px rgb(70, 96, 187, 0.1986);
+
+  button {
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    cursor: pointer;
+    color: #fff;
+  }
+
+  form {
+    flex: 1 1 auto;
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+
+    input {
+      flex: 1 1 auto;
+      background: transparent;
+      border: none;
+      outline: none;
+    }
+
+    input::placeholder {
+      font-weight: bold;
+      opacity: 0.5;
+      color: var(--text-label-color);
+    }
+  }
+}
+
+
+.panel {
+  box-shadow: 0 16px 50px -19px rgb(70, 96, 187, 0.1986);
+
+  padding         : 48px;
+  background-color: var(--panel-bg-color);
+  border-radius   : 15px;
+  display         : flex;
+  gap             : 36px;
+
+  .panel-right {
+    flex: 1 1 auto;
+  }
+
+  .avatar {
+    border-radius: 50%;
+  }
+
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .user-display-name {
+    font-size: 26px;
+    font-weight: bold;
+  }
+
+  .user-join-date {
+    font-weight: 400;
+    color: var(--text-mute-color);
+  }
+
+  .user-bio {
+    min-height: 50px;
+    margin: 20px 0 8px;
+    color: var(--text-label-color);
+    text-wrap: balance;
+  }
+
+  .user-stats-table {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--bg-color);
+    padding: 16px 32px;
+    border-radius: 10px;
+
+    .user-repos > label {
+      font-size: 13px;
+      color: var(--text-label-color);
+    }
+
+    .user-repos > div {
+      font-size: 22px;
+    }
+  }
+
+  .user-info-table {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 40px;
+    column-gap: 50px;
+    row-gap: 20px;
+
+    .user-location {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: var(--text-label-color);
+    }
+  }
+}
