@@ -7,7 +7,7 @@
         <div class="panel-right">
             <div class="panel-header">
                 <div class="user-display-name">{{ userTitle }}</div>
-                <div class="user-join-date">Joined 25 Jan 2011</div>
+                <div v-if="userJoinedAt" class="user-join-date">Joined {{ userJoinedAt }}</div>
             </div>
 
             <div class="panel-subheader">
@@ -34,7 +34,7 @@
             </div>
 
             <div class="user-info-table">
-                <div class="user-location">
+                <div :class="{'user-location': true, 'disabled': isNotAvailable(userLocation)}">
                     <svg width="20" height="20" viewBox="0 0 14 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="003-pin">
                             <path id="Shape" fill-rule="evenodd" clip-rule="evenodd"
@@ -42,9 +42,9 @@
                                 fill="#4B6A9B" />
                         </g>
                     </svg>
-                    <span>San Francisco</span>
+                    <span>{{ userLocation }}</span>
                 </div>
-                <div class="user-location">
+                <div :class="{'user-location': true, 'disabled': isNotAvailable(userTwitter)}">
                     <svg width="20" height="18" viewBox="0 0 20 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="004-twitter">
                             <path id="Path"
@@ -52,9 +52,9 @@
                                 fill="#4B6A9B" />
                         </g>
                     </svg>
-                    <span>Not Available</span>
+                    <span>{{ userTwitter }}</span>
                 </div>
-                <div class="user-location">
+                <div :class="{'user-location': true, 'disabled': isNotAvailable(userBlog)}">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="002-url">
                             <path id="Path"
@@ -65,9 +65,9 @@
                                 fill="#4B6A9B" />
                         </g>
                     </svg>
-                    <span>https://github.blog</span>
+                    <span>{{ userBlog }}</span>
                 </div>
-                <div class="user-location">
+                <div :class="{'user-location': true, 'disabled': isNotAvailable(userCompany)}">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="001-office-building">
                             <path id="Shape" fill-rule="evenodd" clip-rule="evenodd"
@@ -78,7 +78,7 @@
                                 fill="#4B6A9B" />
                         </g>
                     </svg>
-                    <span>San Francisco</span>
+                    <span>{{ userCompany }}</span>
                 </div>
             </div>
         </div>
@@ -96,15 +96,45 @@ const props = defineProps({
 });
 
 const userTitle = computed(() => {
-    return props.data.name ?? 'The Octocat';
+    return props.data.name || 'The Octocat';
 });
 
 const userAvatar = computed(() => {
-    return props.data.avatar_url ?? null;
+    return props.data.avatar_url || null;
 });
 
+const userLocation = computed(() => {
+    return props.data.location || 'Not Available';
+});
+const userBlog = computed(() => {
+    return props.data.blog || 'Not Available';
+});
+const userTwitter = computed(() => {
+    return props.data.twitter_username || 'Not Available';
+});
+const userCompany = computed(() => {
+    return props.data.company || 'Not Available';
+});
+
+const isNotAvailable = (value) => {
+    return value === 'Not Available';
+}
+
+const userJoinedAt = computed(() => {
+    if (!props.data.created_at) {
+        return null;
+    }
+    const date = new Date(props.data.created_at)
+    const formatted = date.toLocaleDateString('en-US', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    })
+    return formatted;
+})
+
 const userBio = computed(() => {
-    return props.data.bio ?? 'This profile has no bio';
+    return props.data.bio || 'This profile has no bio';
 });
 
 const userLogin = computed(() => {

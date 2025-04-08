@@ -85,6 +85,7 @@
   .user-join-date {
     font-weight: 400;
     color: var(--text-mute-color);
+    text-wrap: nowrap;
   }
 
   .user-bio {
@@ -123,6 +124,23 @@
       align-items: center;
       gap: 16px;
       color: var(--text-label-color);
+
+      span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 190px;
+      }
+    }
+
+    .user-location.disabled {
+      color: var(--text-mute-color);
+
+      svg {
+        path {
+          fill: var(--text-mute-color);
+        }
+      }
     }
   }
 }
